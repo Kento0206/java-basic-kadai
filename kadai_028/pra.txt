@@ -1,0 +1,98 @@
+以下のJavaコードにおいての出力結果が正しくなるようアドバイスをください
+
+## コード
+package text.kadai_028;
+
+import java.util.HashMap;
+import java.util.Scanner;
+public class Jyanken_Chapter28 {
+	
+	public String jyanken;
+
+	// じゃんけんの手をリスト化
+	HashMap<String, String> hand = new HashMap<String, String>();
+	
+	// 初期文の出力とリスト内定義、対戦相手の手を代入
+	public Jyanken_Chapter28() {
+		
+		System.out.println("自分のじゃんけんの手を入力しましょう");
+		System.out.println("グーはrockのrを入力しましょう");
+		System.out.println("チョキはscissorsのsを入力しましょう");
+		System.out.println("パーはpaperのpを入力しましょう");
+		
+
+		hand.put("r", "グー");
+		hand.put("s", "チョキ");
+		hand.put("p", "パー");
+		
+		
+	}
+	
+	
+	// 入力された文字の取得と精査
+	public String getMyChoice() {
+		
+		Scanner scanner = new Scanner(System.in);
+		String jyanken = scanner.next();
+		scanner.close();
+		if(jyanken.equals("r") || jyanken.equals("s") || jyanken.equals("p")) {
+		}
+		return jyanken;
+
+	}
+
+	// 対戦相手の手を取得するメソッド
+	public String getRandom() {
+		String[] opponentHand = {"r", "s", "p"};
+		int num = (int)Math.floor(Math.random() * 3);
+		return opponentHand[num];
+	}
+	
+	// じゃんけんを実行するメソッド
+	public void playGame() {
+		String jyanken = getMyChoice();
+		System.out.println(jyanken);
+		String Hand = getRandom();
+		System.out.println("自分の手は" + hand.get(jyanken) + "," + "対戦相手の手は" + hand.get(Hand)); 
+				if(jyanken.equals(Hand)) {
+					System.out.println("あいこです");
+				}else if(jyanken == "r" && Hand == "s") {
+					System.out.println("自分の勝ちです");
+				}else if(jyanken == "s" && Hand == "p") {
+					System.out.println("自分の勝ちです");
+				}else if(jyanken == "p" && Hand == "r"){
+					 System.out.println("自分の勝ちです");
+				}else {
+					System.out.println("相手の勝ちです");
+				}
+	}
+
+}
+
+package text.kadai_028;
+
+public class JyankenExec_Chapter28 {
+
+	public static void main(String[] args) {
+		
+		Jyanken_Chapter28 jyanken = new Jyanken_Chapter28();
+		
+		jyanken.playGame();
+	}
+}
+
+## 仕様
+- じゃんけんを行うクラスである
+- 自分の手は入力し相手の手はランダム(Mathメソッドで取得する)
+- 手はHashMapにてキーとあたいの関係で格納している(r=グー、s=チョキ、p=パー)
+
+## メソッド
+- getMyChoice():自分が入力した手を取得し正しいか判断する。
+- getRandom():手を配列に入れ0,1,2の３つの数字をランダムにインデックス番号として割り振ることで手をランダムで出力する
+- playGame():上記２つのメソッド実行を行い勝負する。じゃんけんでjyanken(自分の手)とHand(相手の手)の比較を行う
+　勝ち負けの結果を出力するが現状、正しい結果が出力されない
+
+##出力
+- 「良い点」「改善点」「問題点」をあげてください
+
+
